@@ -1,0 +1,68 @@
+<style>
+	.cards_wrapper {
+		display: grid;
+		grid-gap: 10px;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
+	.card {
+	}
+</style>
+
+<div class="cards_wrapper">
+	<div class="card">
+		<p>
+			<strong>
+				<input autocomplete="off"
+				       placeholder="New phone number account"
+				       maxlength="{{ phone_number_length }}"
+				       onkeypress="registerNewPhoneNumber(event, this);" />
+			</strong>
+		</p>
+	</div>
+	{% for phone_number in phone_numbers %}
+		<div class="card">
+			<p><strong>{{ phone_number }}</strong></p>
+		</div>
+	{% endfor %}
+</div>
+
+<div class="cards_wrapper">
+	<div class="card">
+		<p>
+			<strong>
+				<input autocomplete="off"
+				       placeholder="New email address account"
+				       maxlength="{{ email_address_length }}"
+				       onkeypress="registerNewEmailAddress(event, this);" />
+			</strong>
+		</p>
+	</div>
+	{% for email_address in email_addresses %}
+		<div class="card">
+			<p><strong>{{ email_address }}</strong></p>
+		</div>
+	{% endfor %}
+</div>
+
+
+<script>
+	function enterKeyPress(event) {
+		if (event.keyCode !== 13) {
+			return false;
+		}
+		return true;
+	}
+	function registerNewPhoneNumber(event, caller) {
+		if (!enterKeyPress(event)) {
+			return false;
+		}
+		console.log("New number:", event.keyCode, "::", caller.value);
+	}
+
+	function registerNewEmailAddress(event, caller) {
+		if (!enterKeyPress(event)) {
+			return false;
+		}
+		console.log("New email:", event.keyCode, "::", caller.value);
+	}
+</script>
