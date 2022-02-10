@@ -11,8 +11,10 @@ def index(request):
     context = {
         'phone_numbers': [1, 2, 3, 4, 5, 6, 7, 8],
         'email_addresses': ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
-        'phone_number_length': config.PHONE_NUMBER_MAX_LENGTH,
-        'email_address_length': config.EMAIL_ADDRESS_MAX_LEGNTH,
+        'supported_accounts': (
+            ('phone_number', config.PHONE_NUMBER_MAX_LENGTH),
+            ('email_address', config.EMAIL_ADDRESS_MAX_LEGNTH),
+        )
     }
     return render(request, 'accounts/index.html', context)
 
