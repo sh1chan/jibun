@@ -79,18 +79,24 @@
 			}
 			return false;
 		}
+		let create_new_account = true;
 		for (let i = 0; i < accounts.length; i++) {
 			// div->p
 			accounts[i].style.display = "";
+			if (accounts[i].children[0].innerText === caller.value) {
+				create_new_account = false;
+			}
 		}
 		if (caller.value === "") {
 			caller.style.display = "none";
 			document.getElementById("account_select").style.display = "";
 			return false;
 		}
-		createNewAccountNode(caller.value);
-		// If adding more than 1 accounts
-		caller.value = "";
+		if (create_new_account) {
+			createNewAccountNode(caller.value);
+			// If adding more than 1 accounts
+			caller.value = "";
+		}
 	}
 
 	function selectAccount() {
