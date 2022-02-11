@@ -1,134 +1,48 @@
-<style>
-	.cards_wrapper {
-		display: grid;
-		grid-gap: 10px;
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	}
-	.card {
-	}
-</style>
+{% load static %}
 
-<h3>Actions</h3>
-<div class="cards_wrapper">
-	<div class="card">
-		<!-- TODO: width: auto; -->
-		<input id="new_account"
-		       autocomplete="off"
-		       placeholder="Select an option first!"
-		       maxlength="0"
-		       style="display: none;"
-		       onkeyup="registerNewAccount(event);" />
-		<select id="account_select" onchange="selectAccount();">
-			<option value="">New account</option>
-			{% for account in supported_accounts %}
-				<option value="{{ account.0 }}" maxlength="{{ account.1 }}">{{ account.0 }}</option>
-			{% endfor %}
-		</select>
-	</div>
-</div>
+<html>
+	<head>
+		<title>Accounts</title>
+		<link rel="stylesheet" href="{% static 'accounts/css/index.css' %}">
+	</head>
+	<body>
 
-<div class="card_container" id="accounts">
-	<div class="cards_wrapper" id="phone_number">
-		{% for phone_number in phone_numbers %}
+		<div class="cards_wrapper">
 			<div class="card">
-				<p><strong>{{ phone_number }}</strong></p>
+				<!-- TODO: width: auto; -->
+				<input id="new_account"
+				       autocomplete="off"
+				       placeholder="Select an option first!"
+				       maxlength="0"
+				       style="display: none;"
+				       onkeyup="registerNewAccount(event);" />
+				<select id="account_select" onchange="selectAccount();">
+					<option value="">New account</option>
+					{% for account in supported_accounts %}
+						<option value="{{ account.0 }}" maxlength="{{ account.1 }}">{{ account.0 }}</option>
+					{% endfor %}
+				</select>
 			</div>
-		{% endfor %}
-	</div>
+		</div>
 
-	<div class="cards_wrapper" id="email_address">
-		{% for email_address in email_addresses %}
-			<div class="card">
-				<p><strong>{{ email_address }}</strong></p>
+		<div class="card_container" id="accounts">
+			<div class="cards_wrapper" id="phone_number">
+				{% for phone_number in phone_numbers %}
+					<div class="card">
+						<p><strong>{{ phone_number }}</strong></p>
+					</div>
+				{% endfor %}
 			</div>
-		{% endfor %}
-	</div>
-</div>
 
+			<div class="cards_wrapper" id="email_address">
+				{% for email_address in email_addresses %}
+					<div class="card">
+						<p><strong>{{ email_address }}</strong></p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
 
-<script>
-	function enterKeyPress(event) {
-		if (event.keyCode !== 13) {
-			return false;
-		}
-		return true;
-	}
-
-	function createNewAccountNode(new_account) {
-		const div = document.createElement("DIV");
-		const p = document.createElement("P")
-		const strong = document.createElement("STRONG");
-		strong.innerText = new_account;
-		p.appendChild(strong);
-		div.appendChild(p);
-		// NOTE: accounts node children has been swapped so taking the 0-th index
-		const parent_node = document.getElementById("accounts").children[0];
-		parent_node.insertBefore(div, parent_node.children[0]);
-	}
-
-	function registerNewAccount(event) {
-		const caller = document.getElementById("new_account");
-		const accounts = document.getElementById("accounts").children[0].children;
-		if (!enterKeyPress(event)) {
-			// NOTE: accounts node children has been swapped so taking the 0-th index
-			for (let i = 0; i < accounts.length; i++) {
-				// div->p
-				accounts[i].style.display = (
-					accounts[i].children[0].innerText !== caller.value
-				) ? "none" : "";
-			}
-			return false;
-		}
-		let create_new_account = true;
-		for (let i = 0; i < accounts.length; i++) {
-			// div->p
-			accounts[i].style.display = "";
-			if (accounts[i].children[0].innerText === caller.value) {
-				create_new_account = false;
-			}
-		}
-		if (caller.value === "") {
-			caller.style.display = "none";
-			document.getElementById("account_select").style.display = "";
-			return false;
-		}
-		if (create_new_account) {
-			createNewAccountNode(caller.value);
-			// If adding more than 1 accounts
-			caller.value = "";
-		}
-	}
-
-	function selectAccount() {
-		const select = document.getElementById("account_select");
-		const selected_account = select.options[select.selectedIndex];
-		if (selected_account.value !== "") {
-			// display *input tag to create a new account
-			let new_account_input = document.getElementById("new_account");
-			new_account_input.setAttribute("maxlength", selected_account.getAttribute("maxlength"));
-			new_account_input.setAttribute("placeholder", selected_account.innerText);
-			select.style.display = "none";
-			new_account_input.style.display = "";
-			// select was clicked so focusing
-			new_account_input.focus();
-			// swap accounts node children
-			const parent_node = document.getElementById("accounts");
-			const parent_node_children = parent_node.children;
-			// NOTE: iterates all tags
-			let swap_index = 0;
-			let swap_with = undefined;
-			for (let i = 0; i < parent_node_children.length; i++) {
-				if (parent_node_children[i].id === selected_account.value) {
-					swap_index = i;
-					swap_with = parent_node_children[i];
-					break;
-				}
-			}
-			// NOTE: swapped with 0-th index
-			if (swap_index) {
-				parent_node.insertBefore(swap_with, parent_node_children[0]);
-			}
-		}
-	}
-
-</script>
+	<script src="{% static 'accounts/js/index.js' %}"></script>
+	</body>
+</html>
