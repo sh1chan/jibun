@@ -19,6 +19,13 @@ def index(request):
     return render(request, 'accounts/index.html', context)
 
 
+@require_http_methods(['GET'])
+def account(request, account_id: int):
+    """Account Dashboard
+    """
+    return render(request, 'accounts/account.html')
+
+
 @require_http_methods(['POST'])
 def register_phone_number(request):
     # TODOC
