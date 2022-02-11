@@ -1,13 +1,19 @@
+{% extends 'sh1chan/index.html' %}
+
 {% load static %}
 
-<h1>{{ account_name }}</h1>
-<table>
-  <tr>
-    <th>Account for</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>Abc.ci</td>
-    <td>Circle: no white - no black</td>
-  </tr>
-</table>
+{% block title %}Account{% endblock %}
+
+{% block body %}
+  <h1>{{ account_name }}</h1>
+  <table>
+    <tr>
+      <th>Account for</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Abc.ci</td>
+      <td>Circle: no white - no black</td>
+    </tr>
+  </table>
+{% endblock %}

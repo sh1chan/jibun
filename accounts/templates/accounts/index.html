@@ -1,50 +1,53 @@
+{% extends 'sh1chan/index.html' %}
+
 {% load static %}
 
-<html>
+{% block head %}
+  {% block title %}Accounts{% endblock %}
 
-  <head>
-    <title>Accounts</title>
-    <link rel="stylesheet" href="{% static 'accounts/css/index.css' %}">
-  </head>
+  <link rel="stylesheet" href="{% static 'accounts/css/index.css' %}">
+{% endblock %}
 
-  <body>
-    <div class="cards_wrapper">
-      <div class="card">
-        <!-- TODO: width: auto; -->
-        <input id="new_account"
-               autocomplete="off"
-               placeholder="Select an option first!"
-               maxlength="0"
-               style="display: none;"
-               onkeyup="registerNewAccount(event);" />
-        <select id="account_select" onchange="selectAccount();">
-          <option value="">New account</option>
-          {% for account in supported_accounts %}
-            <option value="{{ account.0 }}" maxlength="{{ account.1 }}">{{ account.0 }}</option>
-          {% endfor %}
-        </select>
-      </div>
+
+{% block body %}
+  <div class="cards_wrapper">
+    <div class="card">
+      <!-- TODO: width: auto; -->
+      <input id="new_account"
+             autocomplete="off"
+             placeholder="Select an option first!"
+             maxlength="0"
+             style="display: none;"
+             onkeyup="registerNewAccount(event);" />
+      <select id="account_select" onchange="selectAccount();">
+        <option value="">New account</option>
+        {% for account in supported_accounts %}
+          <option value="{{ account.0 }}" maxlength="{{ account.1 }}">{{ account.0 }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="card_container" id="accounts">
+    <div class="cards_wrapper" id="phone_number">
+      {% for phone_number in phone_numbers %}
+        <div class="card">
+          <p><strong>{{ phone_number }}</strong></p>
+        </div>
+      {% endfor %}
     </div>
 
-    <div class="card_container" id="accounts">
-      <div class="cards_wrapper" id="phone_number">
-        {% for phone_number in phone_numbers %}
-          <div class="card">
-            <p><strong>{{ phone_number }}</strong></p>
-          </div>
-        {% endfor %}
-      </div>
-
-      <div class="cards_wrapper" id="email_address">
-        {% for email_address in email_addresses %}
-          <div class="card">
-            <p><strong>{{ email_address }}</strong></p>
-          </div>
-        {% endfor %}
-      </div>
+    <div class="cards_wrapper" id="email_address">
+      {% for email_address in email_addresses %}
+        <div class="card">
+          <p><strong>{{ email_address }}</strong></p>
+        </div>
+      {% endfor %}
     </div>
+  </div>
 
+  {% block script %}
     <script src="{% static 'accounts/js/index.js' %}"></script>
-  </body>
+  {% endblock %}
 
-</html>
+{% endblock %}
