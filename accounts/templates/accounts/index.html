@@ -17,7 +17,7 @@
 		       placeholder="Select an option first!"
 		       maxlength="0"
 		       style="display: none;"
-		       onkeypress="registerNewAccount(event, this);" />
+		       onkeyup="registerNewAccount(event);" />
 		<select id="account_select" onchange="selectAccount();">
 			<option value="">New account</option>
 			{% for account in supported_accounts %}
@@ -54,16 +54,30 @@
 		return true;
 	}
 
-	function registerNewAccount(event, caller) {
+	function registerNewAccount(event) {
+		const caller = document.getElementById("new_account");
+		const accounts = document.getElementById("accounts").children[0].children;
 		if (!enterKeyPress(event)) {
-			// TODO: filter accounts
+			// NOTE: accounts node children has been swapped so taking the 0-th index
+			for (let i = 0; i < accounts.length; i++) {
+				console.log("match value:", accounts[i].innerText);
+				// div->p
+				accounts[i].style.display = (
+					accounts[i].children[0].innerText !== caller.value
+				) ? "none" : "";
+			}
 			return false;
+		}
+		for (let i = 0; i < accounts.length; i++) {
+			// div->p
+			accounts[i].style.display = "";
 		}
 		if (caller.value === "") {
 			caller.style.display = "none";
 			document.getElementById("account_select").style.display = "";
 			return false;
 		}
+		// TODO: create new account
 		console.log("New account:", event.keyCode, "::", caller.value);
 	}
 
@@ -79,7 +93,7 @@
 			new_account_input.style.display = "";
 			// select was clicked so focusing
 			new_account_input.focus();
-			// swap accounts node
+			// swap accounts node children
 			const parent_node = document.getElementById("accounts");
 			const parent_node_children = parent_node.children;
 			// NOTE: iterates all tags
