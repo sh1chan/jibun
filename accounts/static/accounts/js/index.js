@@ -12,6 +12,7 @@ function createNewAccountNode(new_account) {
   strong.innerText = new_account;
   p.appendChild(strong);
   div.appendChild(p);
+  div.className = "card";
   // NOTE: accounts node children has been swapped so taking the 0-th index
   const parent_node = document.getElementById("accounts").children[0];
   parent_node.insertBefore(div, parent_node.children[0]);

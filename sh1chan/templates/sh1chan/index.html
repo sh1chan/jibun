@@ -6,38 +6,48 @@
     <title>{% block title %}{% endblock %}</title>
     {% block head %}
     {% endblock %}
+    <style>
+
+    .tt {
+      display: flex;
+    }
+    </style>
+
   </head>
 
-  <body>
-    <nav class="navbar-top">
+  <body class="row">
+    <nav class="navbar-top col-lg-12 col-md-12 col-sm-12">
       <ul>
         <li>Top nav</li>
-        <li>1</li>
+        <li>1----------------------------</li>
         <li>2</li>
         <li>3</li>
       </ul>
     </nav>
 
-    <nav class="navbar-left">
-      <ul>
-        <li>Left nav</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
-    </nav>
+    <div class="tt">
+      <nav class="a navbar-left col-lg-2 col-md-2 col-sm-2">
+        <ul>
+          <li>Left nav</li>
+          <li>1----------------------------</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </nav>
 
-    {% block body %}
-    {% endblock %}
+      <div class="a container col-lg-8 col-md-8 col-sm-8">
+        {% block body %}
+        {% endblock %}
+      </div>
 
-    <nav class="navbar-right">
-      <ul>
-        <li>Right nav</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-      </ul>
-    </nav>
+      <nav class="a navbar-right col-lg-2 col-md-2 col-sm-2">
+        <ul>
+          <li>Right nav</li>
+          <li>1----------------------------</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </nav>
 
     {% block script %}
     {% endblock %}
