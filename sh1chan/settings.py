@@ -122,7 +122,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'sh1chan',
+    BASE_DIR / 'sh1chan' / 'static',
     BASE_DIR / 'accounts',
 ]
 

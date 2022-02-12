@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 
+{% load static %}
+
 <html>
 
   <head>
     <title>{% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'sh1chan/css/index.css' %}">
+
     {% block head %}
     {% endblock %}
-    <style>
-
-    .tt {
-      display: flex;
-    }
-    </style>
-
   </head>
 
   <body class="row">
