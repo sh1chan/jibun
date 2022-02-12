@@ -14,22 +14,34 @@
   </head>
 
   <body class="row">
+    <!-- functions grouped by applications -->
     <nav class="navbar-top col-lg-12 col-md-12 col-sm-12">
       <ul>
         <li>Top nav</li>
         <li>1----------------------------</li>
         <li>2</li>
         <li>3</li>
+
+        {% block navbar-top %}
+        {% endblock %}
       </ul>
     </nav>
 
     <div class="tt">
+      <!-- applicatioins / routes and others -->
       <nav class="a navbar-left col-lg-2 col-md-2 col-sm-2">
         <ul>
           <li>Left nav</li>
           <li>1----------------------------</li>
           <li>2</li>
           <li>3</li>
+
+          {% for application in CREATED_APPLICATIONS %}
+            <li>{{ application }}</li>
+          {% endfor %}
+
+          {% block navbar-left %}
+          {% endblock %}
         </ul>
       </nav>
 
@@ -38,12 +50,16 @@
         {% endblock %}
       </div>
 
+      <!-- minimap for application -->
       <nav class="a navbar-right col-lg-2 col-md-2 col-sm-2">
         <ul>
           <li>Right nav</li>
           <li>1----------------------------</li>
           <li>2</li>
           <li>3</li>
+
+          {% block navbar-rigth %}
+          {% endblock %}
         </ul>
       </nav>
 
