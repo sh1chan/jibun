@@ -2,9 +2,11 @@
 
 {% load static %}
 
-{% block head %}
-  {% block title %}Accounts{% endblock %}
 
+{% block title %}Accounts{% endblock %}
+
+
+{% block head %}
   <link rel="stylesheet" href="{% static 'accounts/css/index.css' %}">
 {% endblock %}
 
@@ -45,9 +47,9 @@
       {% endfor %}
     </div>
   </div>
+{% endblock %}
 
-  {% block script %}
-    <script src="{% static 'accounts/js/index.js' %}"></script>
-  {% endblock %}
 
+{% block script %}
+  <script src="{% static 'accounts/js/index.js' %}"></script>
 {% endblock %}
