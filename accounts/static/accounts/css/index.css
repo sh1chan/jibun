@@ -5,15 +5,3 @@
   width: 300px;
   display: inline-flex;
 }
-
-.navbar-top {
-  text-align: center;
-}
-
-.navbar-left {
-  margin-right: auto;
-}
-
-.navbar-right {
-  margin-left: auto;
-}

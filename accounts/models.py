@@ -8,13 +8,13 @@ from . import config
 #   - description
 
 
-class NumberAccounts(models.Model):
+class PhoneNumberModel(models.Model):
     """Model to store a phone number
     """
-    full_number = models.CharField(max_length=config.PHONE_NUMBER_MAX_LENGTH)
+    phone_number = models.CharField(max_length=config.PHONE_NUMBER_MAX_LENGTH)
 
 
-class EmailAccounts(models.Model):
+class EmailAddressModel(models.Model):
     """Model to store an email address
     """
-    full_email = models.CharField(max_length=config.EMAIL_ADDRESS_MAX_LEGNTH)
+    email_address = models.CharField(max_length=config.EMAIL_ADDRESS_MAX_LEGNTH)
