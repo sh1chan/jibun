@@ -17,17 +17,7 @@
       <!-- TODO: width: auto; -->
       <input id="new_account"
              autocomplete="off"
-             placeholder="Select an option first!"
-             maxlength="0"
-             style="display: none;"
              onkeyup="registerNewAccount(event);" />
-      <select id="account_select" onchange="selectAccount();">
-        <option value="">New account</option>
-        <option value="">account</option>
-        {% for account in supported_accounts %}
-          <option value="{{ account.0 }}" maxlength="{{ account.1 }}">{{ account.0 }}</option>
-        {% endfor %}
-      </select>
     </div>
   </div>
 
