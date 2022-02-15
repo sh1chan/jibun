@@ -3,18 +3,9 @@ from django.db import models
 from . import config
 
 
-# TODO
-#   - created_date
-#   - description
-
-
-class PhoneNumberModel(models.Model):
-    """Model to store a phone number
+class AccountModel(models.Model):
+    """Model for default or universal accounts
     """
-    phone_number = models.CharField(max_length=config.PHONE_NUMBER_MAX_LENGTH)
-
-
-class EmailAddressModel(models.Model):
-    """Model to store an email address
-    """
-    email_address = models.CharField(max_length=config.EMAIL_ADDRESS_MAX_LEGNTH)
+    name = models.CharField(max_length=config.ACCOUNT_MODEL_NAME_LENGTH)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

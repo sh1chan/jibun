@@ -23,6 +23,7 @@
              onkeyup="registerNewAccount(event);" />
       <select id="account_select" onchange="selectAccount();">
         <option value="">New account</option>
+        <option value="">account</option>
         {% for account in supported_accounts %}
           <option value="{{ account.0 }}" maxlength="{{ account.1 }}">{{ account.0 }}</option>
         {% endfor %}
@@ -31,18 +32,10 @@
   </div>
 
   <div class="card_container" id="accounts">
-    <div class="cards_wrapper" id="phone_number">
-      {% for phone_number in phone_numbers %}
+    <div class="cards_wrapper" id="" name="account">
+      {% for account in accounts %}
         <div class="card">
-          <p><strong>{{ phone_number }}</strong></p>
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="cards_wrapper" id="email_address">
-      {% for email_address in email_addresses %}
-        <div class="card">
-          <p><strong>{{ email_address }}</strong></p>
+          <p><strong>{{ account }}</strong></p>
         </div>
       {% endfor %}
     </div>

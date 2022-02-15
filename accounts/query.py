@@ -1,21 +1,11 @@
-from .models import PhoneNumberModel, EmailAddressModel
+from .models import AccountModel
 
 
-class PhoneNumberQuery:
-    """Query functions for NumberAccount model
+class AccountModelQuery:
+    """Query functions for AccountModel
     """
     __slots__ = ()
 
     @staticmethod
     def get_accounts():
-        return PhoneNumberModel.objects.all().order_by('id')
-
-
-class EmailAddressQuery:
-    """Query functions for EmailAccounts model
-    """
-    __slots__ = ()
-
-    @staticmethod
-    def get_accounts():
-        return EmailAddressModel.objects.all().order_by('id')
+        return AccountModel.objects.all().order_by('id')
