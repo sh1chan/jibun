@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 CREATED_APPS = [
     'base',
     'accounts',
+    'applications',
 ]
 
 INSTALLED_APPS = [
@@ -128,6 +129,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'base',
     BASE_DIR / 'accounts',
+    BASE_DIR / 'applications',
 ]
 
 # Default primary key field type
