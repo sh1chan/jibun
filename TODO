@@ -1,0 +1,32 @@
+/accounts
+  - cards of accounts providers
+
+links
+  - https://gridbyexample.com/examples/
+
+-> MAIN
+  /workspaces/{N+1}
+
+-> APPLICATION
+  -> main application
+  -> widget to import to the another pages
+  /applications/{N+1}
+    -> imports to the workspaces or other places
+    -> editable page for updating the application and its configurations
+
+-> services
+  -> mail server
+
+ROUTES
+  /applications - {editable}
+    -> naming
+  /workspaces   - {editable,boards}
+    -> group of an applications
+  /dashboards   - {editable,boards}
+    -> group of an applications data
+
+
+            stack based
+-------------------------------
+|       |       |       |     |
+-------------------------------
